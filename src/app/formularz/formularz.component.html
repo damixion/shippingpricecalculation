@@ -1,0 +1,28 @@
+<div class="form">
+<form class="example-form" [formGroup]="formOrder" (ngSubmit)="onSubmit()">
+  <mat-form-field class="example-full-width">
+    <mat-label>Postcode</mat-label>
+    <input matInput type="number" formControlName="inputPostcode">
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-form-field class="example-full-width">
+    <mat-label>Total order amount</mat-label>
+    <input matInput type="number" formControlName="inputAmount">
+  </mat-form-field>
+  <br>
+  <br>
+  <mat-checkbox formControlName="checkLongProduct">
+    Long product
+  </mat-checkbox>
+  <br>
+  <br>
+  <button mat-raised-button type="submit" [disabled]="!formOrder.valid">Zatwierdź</button>
+</form>
+
+<div class="result" *ngIf="finalOrderAmaunt !== undefined ">
+  Całkowity koszt zamówienia: {{finalOrderAmaunt}}
+  </div>
+
+</div>
+
