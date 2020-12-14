@@ -1,0 +1,8 @@
+<div class="container">
+  <input type="file" style="display: none;" #fileInput (change)="onFileSelect($event)" />
+  <button mat-raised-button color="primary" (click)="fileInput.click()"> Załaduj plik CSV</button>
+<div class="addFile" *ngIf="selectedFile != null">
+  <label>{{selectedFile?.name}}</label>
+  <button mat-raised-button class="btn-upload"  color="warn" (click)="onUpload()"> Wyślij </button>
+</div>
+</div>

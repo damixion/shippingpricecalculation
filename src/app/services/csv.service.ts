@@ -30,5 +30,14 @@ export class CsvService {
 
     return this.userArray;
   }
+
+  importCsv(file: File)
+  {
+    const data = new FormData();
+    data.append('text', file, file.name)
+    this.http.post('', data).subscribe( (result) => {console.log('Dziala')});
+  }
+
+
 }
 

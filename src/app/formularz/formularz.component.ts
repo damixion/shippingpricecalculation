@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormBuilder, FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { CsvService } from 'src/app/services/csv.service';
 import { Zone } from '../models/zone';
 
@@ -15,15 +14,16 @@ export class FormularzComponent implements OnInit {
    totalOrderAmaunt: number;
    longProduct: boolean;
    finalOrderAmaunt: number;
-
-  formOrder = new FormGroup({
-    inputPostcode: new FormControl('', [Validators.required, Validators.max(99999) , Validators.min(10000)]),
-    inputAmount: new FormControl('', Validators.required),
-    checkLongProduct: new FormControl(''),
-  });
-
+   formOrder: FormGroup;
    x: Zone[];
-  constructor(public servicecsv: CsvService) { }
+
+  constructor(private servicecsv: CsvService, private formOrderBuilder: FormBuilder) {
+    this.formOrder = this.formOrderBuilder.group({
+      inputPostcode: ['', {validators: [Validators.required, Validators.max(99999) , Validators.min(10000)]}],
+      inputAmount: ['', {validators: Validators.required}],
+      checkLongProduct: ['']
+    });
+  }
 
   ngOnInit(): void {
     this.x = this.servicecsv.getZone();
